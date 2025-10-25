@@ -144,7 +144,7 @@ export default function Dashboard() {
           <><main className="w-full">
           <div className="m-4 p-2 rounded-2xl bg-white shadow-lg">
             <div className="text-gray-800 w-full font-semibold text-lg flex justify-between px-4">Quick Access <Ellipsis className="hover:cursor-pointer" /> </div>
-            <div className="mt-4 w-auto mx-4 grid grid-cols-8 overflow-x-auto gap-6 lg:gap-4 sm:gap-6 items-start">
+            <div className="mt-4 w-auto mx-4 grid grid-cols-8 max-lg:grid-cols-3 max-sm:grid-cols-2 gap-6 lg:gap-4 sm:gap-6 items-start">
               {data.files.map((item, index) => (
                 <div key={index} className="w-48 hover:bg-slate-200 border border-gray-300 shadow p-4 rounded-md">
                   <FolderOpen className="text-white bg-blue-500 rounded-lg p-1" size={36} />
