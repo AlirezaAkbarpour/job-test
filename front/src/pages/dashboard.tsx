@@ -91,12 +91,12 @@ export default function Dashboard() {
   },[])
 
   const Header = ()=>{
-    return <header className="w-full flex justify-start p-2">
-            <div className="flex flex-1 w-1/4 mx-3 items-center"> 
+    return <header className="w-full flex justify-start p-2 max-lg:grid max-lg:grid-cols-1 max-lg:gap-4">
+            <div className="flex flex-1 w-1/4 mx-3 items-center max-lg:justify-center"> 
               <Mountain className="text-blue-500"/>
               <h1 className="text-xl mx-2">mountain</h1>
             </div>
-            <div className="flex justify-start">
+            <div className="flex justify-start max-lg:justify-center">
               {tabs.map((item,index)=>
                 <div key={index} className={item.name=='Files'?'bg-white py-1 px-3 mx-2 flex justify-center rounded-lg hover:bg-slate-300 hover:cursor-pointer': "py-1 px-3 mx-2 flex justify-center rounded-lg hover:bg-slate-300 hover:cursor-pointer"}>
                   {item.icon} <span className={ item.name=='Files'?'text-blue-800 font-medium mx-2':'text-gray-500' + "font-medium mx-2"}>{item.name}</span>
@@ -126,7 +126,7 @@ export default function Dashboard() {
     return(
       <div className="p-4 justify-center bg-gray-200 w-full h-screen">
         <h1 className="text-xl p-4 flex justify-center text-red-700 gap-4 items-center">{error} <Ban/></h1>
-        <button className="px-4 py-2 bg-blue-400 w-[120px] mx-10 text-white font-semibold text-lg shadow-md" onClick={()=> window.location.reload()}>Retry</button> 
+        <button className="px-4 py-2 bg-blue-400 w-[120px] ml-[48rem] text-white font-semibold text-lg shadow-md" onClick={()=> window.location.reload()}>Retry</button> 
       </div>
     )}
 
