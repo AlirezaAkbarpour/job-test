@@ -15,6 +15,8 @@ Visit
 - Tailwind CSS
 - React Router DOM
 - Lucid Icons
+- Express.Js
+- React Context
 
 
 # Prerequisites

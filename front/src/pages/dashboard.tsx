@@ -80,7 +80,6 @@ export default function Dashboard() {
 
         const result : ProjectData = await res.json()
         setData(result)   
-        console.log(result)
       } catch(error){
         setError(error instanceof Error? error.message : 'An unknown error')
       } finally{
@@ -98,8 +97,8 @@ export default function Dashboard() {
               <h1 className="text-xl mx-2">mountain</h1>
             </div>
             <div className="flex justify-start">
-              {tabs.map(item=>
-                <div className={item.name=='Files'?'bg-white py-1 px-3 mx-2 flex justify-center rounded-lg hover:bg-slate-300 hover:cursor-pointer': "py-1 px-3 mx-2 flex justify-center rounded-lg hover:bg-slate-300 hover:cursor-pointer"}>
+              {tabs.map((item,index)=>
+                <div key={index} className={item.name=='Files'?'bg-white py-1 px-3 mx-2 flex justify-center rounded-lg hover:bg-slate-300 hover:cursor-pointer': "py-1 px-3 mx-2 flex justify-center rounded-lg hover:bg-slate-300 hover:cursor-pointer"}>
                   {item.icon} <span className={ item.name=='Files'?'text-blue-800 font-medium mx-2':'text-gray-500' + "font-medium mx-2"}>{item.name}</span>
                 </div>
               )}
@@ -146,7 +145,7 @@ export default function Dashboard() {
           <><main className="w-full">
           <div className="m-4 p-2 rounded-2xl bg-white shadow-lg">
             <div className="text-gray-800 w-full font-semibold text-lg flex justify-between px-4">Quick Access <Ellipsis className="hover:cursor-pointer" /> </div>
-            <div className="mt-4 mx-4 grid grid-cols-8 gap-4 justify-start items-start">
+            <div className="mt-4 w-full mx-4 grid grid-cols-5 overflow-x-auto gap-8 content-start">
               {data.files.map((item, index) => (
                 <div key={index} className="w-48 hover:bg-slate-400 border border-gray-300 shadow p-4 rounded-md">
                   <FolderOpen className="text-white bg-blue-500 rounded-lg p-1" size={36} />
@@ -171,8 +170,8 @@ export default function Dashboard() {
                     <th className="flex items-center text-slate-600 font-normal gap-2 justify-between">Size<ChevronDown size={16} /></th>
                     <th className="flex items-center text-slate-600 font-normal gap-2 justify-between">Modified<ChevronDown size={16} /></th>
                   </tr>
-                  <hr className="my-2 border-1" />
                 </thead>
+                <hr className="my-2 border-1" />
                 <tbody className="w-full">
                   {data?.files.map((item, index) => <tr key={index} className="flex hover:bg-slate-400 transition gap-24 justify-normal">
                     <th className="flex w-[190px] items-center mx-4 gap-4"><FolderClosed className="text-blue-500" />
