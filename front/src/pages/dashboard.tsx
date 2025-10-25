@@ -104,12 +104,12 @@ export default function Dashboard() {
               )}
             </div>
             <div className="w-1/4"></div>
-            <div className="w-1/4 flex justify-center items-center px-2">
+            <div className=" flex justify-center items-center px-2">
               <div className="bg-white flex rounded-md justify-start items-center mx-4">
                 <Search className="mx-1 text-slate-600 hover:cursor-pointer" size={16}/>
                 <input type="text" className="mx-2 p-1 border-0 bg-transparent focus:ring-0 focus:border-0 focus:outline-none transition" placeholder="Search anything..."/> 
               </div>
-              {user?.username}
+              <p className="mx-2 hover:bg-slate-700 hover:text-white p-1 rounded-xl transition">{user?.username}</p> 
               <BellDot className="mx-2 hover:cursor-pointer hover:scale-110 transition"/>
               <LogOut className="mx-2 text-red-700 hover:cursor-pointer hover:scale-110 transition" onClick={logout_handle}/>
             </div>
@@ -124,12 +124,11 @@ export default function Dashboard() {
 
   if(error){
     return(
-      <div className="p-4 justify-center">
+      <div className="p-4 justify-center bg-gray-200 w-full h-screen">
         <h1 className="text-xl p-4 flex justify-center text-red-700 gap-4 items-center">{error} <Ban/></h1>
         <button className="px-4 py-2 bg-blue-400 w-[120px] mx-10 text-white font-semibold text-lg shadow-md" onClick={()=> window.location.reload()}>Retry</button> 
       </div>
-    )
-  }
+    )}
 
   if(!data?.project) return(
       <div className="p-4 justify-center bg-gray-200 w-full">
@@ -145,9 +144,9 @@ export default function Dashboard() {
           <><main className="w-full">
           <div className="m-4 p-2 rounded-2xl bg-white shadow-lg">
             <div className="text-gray-800 w-full font-semibold text-lg flex justify-between px-4">Quick Access <Ellipsis className="hover:cursor-pointer" /> </div>
-            <div className="mt-4 w-full mx-4 grid grid-cols-5 overflow-x-auto gap-8 content-start">
+            <div className="mt-4 w-auto mx-4 grid grid-cols-8 overflow-x-auto gap-6 lg:gap-4 sm:gap-6 items-start">
               {data.files.map((item, index) => (
-                <div key={index} className="w-48 hover:bg-slate-400 border border-gray-300 shadow p-4 rounded-md">
+                <div key={index} className="w-48 hover:bg-slate-200 border border-gray-300 shadow p-4 rounded-md">
                   <FolderOpen className="text-white bg-blue-500 rounded-lg p-1" size={36} />
                   <h1 className="mt-2 font-medium">{item.name}</h1>
                   <span className="flex text-slate-600">{item.size} <span><Dot /></span> </span>
@@ -173,14 +172,14 @@ export default function Dashboard() {
                 </thead>
                 <hr className="my-2 border-1" />
                 <tbody className="w-full">
-                  {data?.files.map((item, index) => <tr key={index} className="flex hover:bg-slate-400 transition gap-24 justify-normal">
+                  {data?.files.map((item, index) => <tr key={index} className="flex hover:bg-slate-400 transition gap-24 justify-start">
                     <th className="flex w-[190px] items-center mx-4 gap-4"><FolderClosed className="text-blue-500" />
                       <span className="font-medium">{item.name}</span>
                     </th>
-                    <th className="mx-4 font-normal text-slate-700">{item.sharing}</th>
+                    <th className="mx-4  font-normal text-slate-700">{item.sharing}</th>
                     <th className="mx-4 font-normal text-slate-700 ">{item.size}</th>
                     <th className="mx-4 font-normal text-slate-700">{item.modified}</th>
-                    <th className="mx-4"><Ellipsis className="text-slate-600" /></th>
+                    <th className="mx-4 px-2 text-center flex  hover:cursor-pointer"><Ellipsis className="text-slate-600" /></th>
                   </tr>)}
 
                 </tbody>
