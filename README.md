@@ -9,4 +9,39 @@ Dashboard Page : <a href="https://dribbble.com/shots/23474771-Dashboard-for-a-Ma
 Visit
 </a>
 
-# How to run 
+# Technologies Used
+- React.js
+- TypeScript
+- Tailwind CSS
+- React Router DOM
+- Lucid Icons
+
+
+# Prerequisites
+- Node.js (v18 or higher)
+- npm 
+
+# Getting Started
+
+1. Clone the repository
+```bash
+git clone https://github.com/AlirezaAkbarpour/job-test.git
+cd job-test
+cd front
+```
+
+2. Install dependencies
+```bash
+npm install
+```
+
+3. Start development server
+```bash
+cd ../express-api
+npm install
+npm start
+```
+
+4. Open your browser and visit `http://localhost:5173`
+
+

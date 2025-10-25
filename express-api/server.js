@@ -51,9 +51,12 @@ app.get('/api/data',(req,res)=>{
     }
 
     const user = MOCK_TOKENS[token]
+    console.log(user)
     try{
-        const data = require('./db.json')        
-        res.json(data)
+        const data = require('./db.json')
+        const data2 = require('./db2.json') 
+        if(user.id === 1) res.json(data)
+        if(user.id === 2) res.json(data2)
     }catch(error){
         res.status(500).json({error:'Failed to load data'})
     }

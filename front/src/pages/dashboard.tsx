@@ -1,6 +1,7 @@
-import { Activity, Ban, BellDot, Calendar, ChevronDown, ChevronRight, Contact, Dot, Ellipsis, FolderClosed, FolderOpen, LayoutGrid, LogOut, Mountain, Plus, Search } from "lucide-react";
-import { useEffect, useState } from "react";
+import { Activity, Ban, BellDot, Calendar, ChevronDown, ChevronRight, Contact, Dot, Ellipsis, FolderClosed, FolderOpen, LayoutGrid, Loader, LogOut, Mountain, Plus, Search } from "lucide-react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../contexts/UserContext";
 
 const tabs = [
   {
@@ -46,6 +47,7 @@ export default function Dashboard() {
   const [loading , setLoading ] = useState(true)
   const [error,setError] = useState<string|null>(null)
 
+  const user = useContext(UserContext)
   const naigate = useNavigate()
 
   const logout_handle = ()=>{
@@ -89,20 +91,8 @@ export default function Dashboard() {
     fetchData()
   },[])
 
-  if(loading) return <div className="w-full">Loading 0.0.0.0</div>
-
-  const ErrorBox = ()=>{
-    if(error) return(
-      <div className="p-4 justify-center">
-        <h1 className="text-xl p-4 flex justify-center text-red-700 gap-4 items-center">{error} <Ban/></h1>
-        <button className="px-4 py-2 bg-blue-400 w-[120px] text-white font-semibold text-lg shadow-md" onClick={()=> window.location.reload()}>Retry</button> 
-      </div>
-    )
-  }
-
-  return (
-    <div className="w-full bg-gray-200">
-          <header className="w-full flex justify-start p-2">
+  const Header = ()=>{
+    return <header className="w-full flex justify-start p-2">
             <div className="flex flex-1 w-1/4 mx-3 items-center"> 
               <Mountain className="text-blue-500"/>
               <h1 className="text-xl mx-2">mountain</h1>
@@ -120,21 +110,48 @@ export default function Dashboard() {
                 <Search className="mx-1 text-slate-600 hover:cursor-pointer" size={16}/>
                 <input type="text" className="mx-2 p-1 border-0 bg-transparent focus:ring-0 focus:border-0 focus:outline-none transition" placeholder="Search anything..."/> 
               </div>
+              {user?.username}
               <BellDot className="mx-2 hover:cursor-pointer hover:scale-110 transition"/>
               <LogOut className="mx-2 text-red-700 hover:cursor-pointer hover:scale-110 transition" onClick={logout_handle}/>
             </div>
-          </header>
-          <ErrorBox/>
+    </header>
+  }
+
+
+  if(loading) return <div className="w-full bg-gray-200">
+      <Header/>
+      <h1 className="flex justify-center gap-3 text-lg items-center p-4">Loading <Loader className="animate-spin"/></h1>
+  </div>
+
+  if(error){
+    return(
+      <div className="p-4 justify-center">
+        <h1 className="text-xl p-4 flex justify-center text-red-700 gap-4 items-center">{error} <Ban/></h1>
+        <button className="px-4 py-2 bg-blue-400 w-[120px] mx-10 text-white font-semibold text-lg shadow-md" onClick={()=> window.location.reload()}>Retry</button> 
+      </div>
+    )
+  }
+
+  if(!data?.project) return(
+      <div className="p-4 justify-center bg-gray-200 w-full">
+        <Header/>
+        <h1 className="text-xl p-4 flex justify-center my-52 text-blue-700 gap-4 items-center">Not Data available<Ban/></h1>
+      </div>
+    )
+
+  return (
+    <div className="w-full bg-gray-200">
+          <Header/>
           {data &&
           <><main className="w-full">
           <div className="m-4 p-2 rounded-2xl bg-white shadow-lg">
             <div className="text-gray-800 w-full font-semibold text-lg flex justify-between px-4">Quick Access <Ellipsis className="hover:cursor-pointer" /> </div>
-            <div className="mt-4 mx-4 flex gap-4 justify-start items-start">
+            <div className="mt-4 mx-4 grid grid-cols-8 gap-4 justify-start items-start">
               {data.files.map((item, index) => (
                 <div key={index} className="w-48 hover:bg-slate-400 border border-gray-300 shadow p-4 rounded-md">
                   <FolderOpen className="text-white bg-blue-500 rounded-lg p-1" size={36} />
                   <h1 className="mt-2 font-medium">{item.name}</h1>
-                  <span className="flex text-slate-600">{item.size} <span><Dot /></span> {item.collaborators}</span>
+                  <span className="flex text-slate-600">{item.size} <span><Dot /></span> </span>
                 </div>
               ))}
             </div>

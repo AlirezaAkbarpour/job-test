@@ -4,6 +4,7 @@ import Dashboard from './pages/dashboard';
 import LoginPage from './pages/login';
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 import { RouterProvider } from 'react-router-dom';
+import { UserContext } from './contexts/UserContext';
 
 const router = createBrowserRouter([
   {
@@ -25,10 +26,13 @@ const router = createBrowserRouter([
 ])
 
 function App() {
+  const user = JSON.parse(localStorage.getItem("user") || "{}")
   return (
-    <div className='w-full flex justify-center items-center'>
-    <RouterProvider router={router}/>
-    </div>
+    <UserContext.Provider value={user}>
+      <div className='w-full flex justify-center items-center'>
+      <RouterProvider router={router}/>
+      </div>
+    </UserContext.Provider>
   )
 }
 
