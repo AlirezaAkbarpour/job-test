@@ -1,4 +1,4 @@
-import { Activity, BellDot, Calendar, Contact, FolderClosed, Mountain, PersonStandingIcon, Search } from "lucide-react";
+import { Activity, BellDot, Calendar, ChevronDown, ChevronRight, Contact, Dot, Ellipsis, FolderClosed, FolderOpen, LayoutGrid, Mountain, PersonStandingIcon, Plus, Search } from "lucide-react";
 
 const tabs = [
   {
@@ -21,11 +21,11 @@ const tabs = [
 
 export default function Dashboard() {
   return (
-    <div className="w-full bg-slate-200">
+    <div className="w-full bg-gray-200">
           <header className="w-full flex justify-start p-2">
-            <div className="flex flex-1 w-1/4 items-center"> 
+            <div className="flex flex-1 w-1/4 mx-3 items-center"> 
               <Mountain className="text-blue-500"/>
-              <h1 className="text-xl ml-3">mountain</h1>
+              <h1 className="text-xl mx-2">mountain</h1>
             </div>
             <div className="flex justify-start">
               {tabs.map(item=>
@@ -37,15 +37,54 @@ export default function Dashboard() {
             <div className="w-1/4"></div>
             <div className="w-1/4 flex justify-center items-center px-2">
               <div className="bg-white flex rounded-md justify-start items-center mx-4">
-                <input type="text" className="mx-2 p-1 focus:ring-0 focus:border-0" placeholder="Search anything..."/> 
-                <Search className="mx-1"/>
+                <Search className="mx-1 text-slate-600 hover:cursor-pointer" size={16}/>
+                <input type="text" className="mx-2 p-1 border-0 bg-transparent focus:ring-0 focus:border-0 focus:outline-none transition" placeholder="Search anything..."/> 
               </div>
               <BellDot className="mx-2"/>
               <PersonStandingIcon className="mx-2"/>
             </div>
           </header>
-          <div className="w-full">
-            <div className=""></div>
+          <main className="w-full">
+            <div className="m-4 p-2 rounded-2xl bg-white shadow-lg">
+              <div className="text-gray-800 w-full font-semibold text-lg flex justify-between px-4">Quick Access <Ellipsis className="hover:cursor-pointer"/> </div>
+              <div className="mt-4 mx-4 flex gap-4 justify-start items-start">
+                <div className="w-48 border border-gray-300 shadow p-4 rounded-md">
+                  <FolderOpen className="text-white bg-blue-500 rounded-lg p-1" size={36} />
+                  <h1 className="mt-2 font-medium">Studio Works</h1>
+                  <span className="flex text-slate-600">2.3 GB <span><Dot/></span> 23 items</span>
+                </div>
+
+              </div>
+            </div>
+          </main>
+          <div className="bg-white p-2 m-4 rounded-xl">
+            <nav className="flex justify-between items-center">
+              <div className="flex text-slate-600 gap-2 mx-3"> <span>Home</span> <ChevronRight/> <span>Concept Font</span> <ChevronRight/> <span className="font-bold">Maszeh</span> </div>
+              <div className="flex items-center"><LayoutGrid className="mx-2 text-slate-400"/> 
+              <button className="flex items-center py-1 px-3 bg-blue-700 mx-1 text-white font-light rounded-lg"><Plus size={20}/><span className="mx-1">Add New</span></button></div>
+            </nav>
+            <div className="max-lg:overflow-x-auto">
+            <table className="mt-6 w-full">
+              <thead className="w-full">
+                <tr className="w-full flex gap-32 justify-normal mx-3">
+                  <th className="flex items-center w-[190px] font-normal text-slate-600 gap-2">Name<ChevronDown size={16}/></th>
+                  <th className="text-slate-600 font-normal">Sharing</th>
+                  <th className="flex items-center text-slate-600 font-normal gap-2 justify-between">Size<ChevronDown size={16}/></th>
+                  <th className="flex items-center text-slate-600 font-normal gap-2 justify-between">Modified<ChevronDown size={16}/></th>
+                </tr>
+                <hr className="my-2 border-1"/>
+              </thead>
+              <tbody className="w-full">
+                <tr className="flex gap-24 justify-normal">
+                    <th className="flex w-[190px] items-center mx-4 gap-4"><FolderClosed className="text-blue-500"/> <span className="font-medium">Docs</span></th>
+                    <th className="mx-4 font-normal text-slate-700">Public</th>
+                    <th className="mx-4 font-normal text-slate-700">4.5 MB</th>
+                    <th className="mx-4 font-normal text-slate-700">Apr 10, 2022</th>
+                    <th className=""><Ellipsis className="text-slate-600"/></th>
+                </tr>
+              </tbody>
+            </table>
+            </div>
           </div>
     </div>
   )

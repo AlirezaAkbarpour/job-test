@@ -5,7 +5,7 @@ import LogForm from '../components/loginForm'
 
 export default function LoginPage() {
   return (
-    <div className="w-full mx-40 flex items-start justify-between py-6 max-sm:justify-center max-sm:items-center">
+    <div className="w-full mx-36 flex gap-4 items-start justify-between py-6 max-sm:justify-center max-sm:items-center">
         <div className="w-1/2 max-sm:-z-10 max-sm:absolute max-sm:w-full">
           <VideoBackground />
         </div>
