@@ -5,11 +5,6 @@ const PORT = 3000
 
 app.use(express.json())
 
-const data = {
-
-}
-
-
 const USERS = [
     {id:1,username:"admin",password:'1234'},
     {id:2,username:"owner",password:'5678'}
@@ -51,7 +46,7 @@ app.get('/api/data',(req,res)=>{
     }
 
     const user = MOCK_TOKENS[token]
-    console.log(user)
+    setTimeout(()=>{
     try{
         const data = require('./db.json')
         const data2 = require('./db2.json') 
@@ -59,7 +54,7 @@ app.get('/api/data',(req,res)=>{
         if(user.id === 2) res.json(data2)
     }catch(error){
         res.status(500).json({error:'Failed to load data'})
-    }
+    }},1000)
 })
 
 
