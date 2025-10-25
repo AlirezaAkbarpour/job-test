@@ -1,4 +1,4 @@
-import { Activity, Ban, BellDot, Calendar, ChevronDown, ChevronRight, Contact, Dot, Ellipsis, FolderClosed, FolderOpen, LayoutGrid, Loader, LogOut, Mountain, Plus, Search } from "lucide-react";
+import { Activity, Ban, BellDot, Calendar, ChevronDown, ChevronRight, Contact, Dot, Ellipsis, FolderClosed, FolderOpen, LayoutGrid, Loader, LogOut, Mountain, Plus, Search, Text } from "lucide-react";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
@@ -138,18 +138,18 @@ export default function Dashboard() {
     )
 
   return (
-    <div className="w-full bg-gray-200">
+    <div className="w-full bg-gray-200 h-screen">
           <Header/>
           {data &&
           <><main className="w-full">
           <div className="m-4 p-2 rounded-2xl bg-white shadow-lg">
             <div className="text-gray-800 w-full font-semibold text-lg flex justify-between px-4">Quick Access <Ellipsis className="hover:cursor-pointer" /> </div>
-            <div className="mt-4 w-auto mx-4 grid grid-cols-8 max-lg:grid-cols-3 max-sm:grid-cols-2 gap-6 lg:gap-4 sm:gap-6 items-start">
+            <div className={"mt-4 w-full mx-4 grid grid-cols-7 max-lg:grid-cols-3 max-sm:grid-cols-2 gap-6 lg:gap-4 sm:gap-6 items-start"}>
               {data.files.map((item, index) => (
                 <div key={index} className="w-48 hover:bg-slate-200 border border-gray-300 shadow p-4 rounded-md">
-                  <FolderOpen className="text-white bg-blue-500 rounded-lg p-1" size={36} />
+                  {item?.name.includes('.txt')? <Text className="text-orange-500" size={36}/>: <FolderOpen className="text-white bg-blue-500 rounded-lg p-1" size={36} />}
                   <h1 className="mt-2 font-medium">{item.name}</h1>
-                  <span className="flex text-slate-600">{item.size} <span><Dot /></span> </span>
+                  <span className="flex text-slate-600">{item.size} <span><Dot /></span> 14 items </span>
                 </div>
               ))}
             </div>
