@@ -44,4 +44,6 @@ npm start
 
 4. Open your browser and visit `http://localhost:5173`
 
-
+5. usernames and roles
+``` username : admin password:1234 ```
+``` username : owner password:5678 ```
