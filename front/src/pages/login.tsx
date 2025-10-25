@@ -14,12 +14,12 @@ export default function LoginPage() {
               <Fingerprint/>
               <span className='font-medium text-lg'>Cogie</span>
             </div>
-            <div className='w-full text-center font-thin text-3xl mt-24 font-serif'>Welcome Back</div>
+            <div className='w-full text-center font-thin text-3xl mt-[10rem] font-serif'>Welcome Back</div>
             <div className='font-extralight text-sm text-center '>Enter your Email and password to access your account</div>
             <div className='flex justify-center'>
               <LogForm/>
             </div>
-            <div className="text-center mt-24 text-slate-700">Don't have an account? 
+            <div className="text-center mt-48 text-slate-700">Don't have an account? 
               <span className="text-black"> Sign Up</span> </div>
         </div>
     </div>

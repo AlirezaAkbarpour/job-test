@@ -1,0 +1,70 @@
+{
+  "project": "Maszeh",
+  "path": ["Home", "Concept Font", "Maszeh"],
+  "files": [
+    {
+      "name": "Docs",
+      "type": "folder",
+      "sharing": "Public",
+      "size": "4.5 MB",
+      "modified": "Apr 10, 2022",
+      "collaborators": []
+    },
+    {
+      "name": "Fonts",
+      "type": "folder",
+      "sharing": "Public",
+      "size": "2.5 MB",
+      "modified": "Apr 2, 2022",
+      "collaborators": []
+    },
+    {
+      "name": "Source",
+      "type": "folder",
+      "sharing": "Private",
+      "size": "1.2 MB",
+      "modified": "Yesterday",
+      "collaborators": [
+        { "name": "User 1", "avatar": "https://i.pravatar.cc/24?img=1" },
+        { "name": "User 2", "avatar": "https://i.pravatar.cc/24?img=2" },
+        { "name": "User 3", "avatar": "https://i.pravatar.cc/24?img=3" },
+        { "name": "User 4", "avatar": "https://i.pravatar.cc/24?img=4" },
+        { "name": "User 5", "avatar": "https://i.pravatar.cc/24?img=5" },
+        { "name": "User 6", "avatar": "https://i.pravatar.cc/24?img=6" }
+      ]
+    },
+    {
+      "name": "Example",
+      "type": "folder",
+      "sharing": "Private",
+      "size": "12.2 MB",
+      "modified": "Yesterday",
+      "collaborators": [
+        { "name": "User 7", "avatar": "https://i.pravatar.cc/24?img=7" },
+        { "name": "User 8", "avatar": "https://i.pravatar.cc/24?img=8" },
+        { "name": "User 9", "avatar": "https://i.pravatar.cc/24?img=9" }
+      ]
+    },
+    {
+      "name": "OFL.txt",
+      "type": "file",
+      "sharing": "Public",
+      "size": "4 KB",
+      "modified": "Oct 12, 2021"
+    },
+    {
+      "name": "Readme.md",
+      "type": "file",
+      "sharing": "Public",
+      "size": "2 KB",
+      "modified": "Oct 12, 2021"
+    },
+    {
+      "name": "index.html",
+      "type": "file",
+      "sharing": "Public",
+      "size": "14 KB",
+      "modified": "Oct 12, 2021"
+    }
+  ]
+}

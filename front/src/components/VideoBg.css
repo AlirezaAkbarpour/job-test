@@ -36,10 +36,11 @@
     opacity: 0.5;
     word-spacing: 40;
     border: 1px solid snow;
+    animation: widthExpand 2s ease-in-out infinite alternate;
 }
 
 .overlay h2{
-  font-family: 'Times New Roman', Times, serif;
+  font-family: Georgia, 'Times New Roman', Times, serif;
   font-size: 3rem;
   font-weight: 200;
   width: 220px;
@@ -49,9 +50,19 @@
   transform: translateY(140px);
 }
 .overlay h3{
+    width: 21rem;
     font-size: 1rem;
     margin-bottom: 1rem;
     text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
     position: relative;
     transform: translateY(160px);
+}
+
+@keyframes widthExpand {
+  from{
+    width: 100px;
+  }
+  to{
+    width: 300px;
+  }
 }

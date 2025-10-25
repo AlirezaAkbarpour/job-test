@@ -1,7 +1,8 @@
 import './App.css'
+import ProtectedRoute from './components/protectRoute';
 import Dashboard from './pages/dashboard';
 import LoginPage from './pages/login';
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, Navigate } from 'react-router-dom';
 import { RouterProvider } from 'react-router-dom';
 
 const router = createBrowserRouter([
@@ -11,11 +12,15 @@ const router = createBrowserRouter([
   },
   {
     path:'/dashboard',
-    element: <Dashboard/>
+    element: <ProtectedRoute><Dashboard/></ProtectedRoute> 
   },
   {
     path:'*',
-    element:<LoginPage/>
+    element:<Navigate to={'/dashboard'} replace/>
+  },
+  {
+    path:'/',
+    element: <Navigate to={'/dashboard'} replace/>
   }
 ])
 
