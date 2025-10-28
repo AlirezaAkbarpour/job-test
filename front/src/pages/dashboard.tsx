@@ -1,4 +1,4 @@
-import { Activity, Ban, BellDot, Calendar, ChevronDown, ChevronRight, Contact, Dot, Ellipsis, FolderClosed, FolderOpen, LayoutGrid, Loader, LogOut, Mountain, Plus, Search, Text } from "lucide-react";
+import { Activity, Ban, BellDot, Calendar, ChevronDown, ChevronRight, Contact, Dot, Ellipsis, FileCode, FileText, FolderClosed, LayoutGrid, Loader, LogOut, Mountain, Plus, Search } from "lucide-react";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
@@ -90,11 +90,19 @@ export default function Dashboard() {
     fetchData()
   },[])
 
+  const FileIconSelect = ({name,color,size}:{name:string,color:string,size?:number})=>{
+      switch (true) {
+        case name.includes(".html") : return <FileCode className={`text-red-500`} size={size}/> ;
+        case name.includes(".txt") : return <FileText className={`text-orange-500`} size={size}/> ;
+        default : return <FolderClosed className={`text-${color}-500`} size={size}/>;
+      }
+  }
+
   const Header = ()=>{
     return <header className="w-full flex justify-start p-2 max-lg:grid max-lg:grid-cols-1 max-lg:gap-4">
             <div className="flex flex-1 w-1/4 mx-3 items-center max-lg:justify-center"> 
               <Mountain className="text-blue-500"/>
-              <h1 className="text-xl mx-2">mountain</h1>
+              <h1 className="text-xl mx-2 font-normal">mountain</h1>
             </div>
             <div className="flex justify-start max-lg:justify-center">
               {tabs.map((item,index)=>
@@ -117,7 +125,7 @@ export default function Dashboard() {
   }
 
 
-  if(loading) return <div className="w-full bg-gray-200">
+  if(loading) return <div className="w-full bg-gray-200 h-screen">
       <Header/>
       <h1 className="flex justify-center gap-3 text-lg items-center p-4">Loading <Loader className="animate-spin"/></h1>
   </div>
@@ -138,7 +146,7 @@ export default function Dashboard() {
     )
 
   return (
-    <div className="w-full bg-gray-200 h-screen">
+    <div className="w-full bg-gray-200 ">
           <Header/>
           {data &&
           <><main className="w-full">
@@ -147,7 +155,7 @@ export default function Dashboard() {
             <div className={"mt-4 w-full mx-4 grid grid-cols-7 max-lg:grid-cols-3 max-sm:grid-cols-2 gap-6 lg:gap-4 sm:gap-6 items-start"}>
               {data.files.map((item, index) => (
                 <div key={index} className="w-48 hover:bg-slate-200 border border-gray-300 shadow p-4 rounded-md">
-                  {item?.name.includes('.txt')? <Text className="text-orange-500" size={36}/>: <FolderOpen className="text-white bg-blue-500 rounded-lg p-1" size={36} />}
+                  <FileIconSelect name={item.name} color="blue" size={36} />
                   <h1 className="mt-2 font-medium">{item.name}</h1>
                   <span className="flex text-slate-600">{item.size} <span><Dot /></span> 14 items </span>
                 </div>
@@ -165,20 +173,25 @@ export default function Dashboard() {
                 <thead className="w-full">
                   <tr className="w-full flex gap-32 justify-normal mx-3">
                     <th className="flex items-center w-[190px] font-normal text-slate-600 gap-2">Name<ChevronDown size={16} /></th>
-                    <th className="text-slate-600 font-normal">Sharing</th>
-                    <th className="flex items-center text-slate-600 font-normal gap-2 justify-between">Size<ChevronDown size={16} /></th>
+                    <th className="text-slate-600 w-[220px] text-start font-normal">Sharing</th>
+                    <th className="flex w-[120px] items-center text-slate-600 font-normal gap-2 justify-start">Size<ChevronDown size={16} /></th>
                     <th className="flex items-center text-slate-600 font-normal gap-2 justify-between">Modified<ChevronDown size={16} /></th>
                   </tr>
                 </thead>
                 <hr className="my-2 border-1" />
                 <tbody className="w-full">
-                  {data?.files.map((item, index) => <tr key={index} className="flex hover:bg-slate-400 transition gap-24 justify-start">
-                    <th className="flex w-[190px] items-center mx-4 gap-4"><FolderClosed className="text-blue-500" />
+                  {data?.files.map((item, index) => <tr key={index} className="flex hover:bg-slate-400 transition my-2 gap-24 justify-start">
+                    <th className="flex w-[190px] items-center mx-4 gap-4"><FileIconSelect name={item.name} color="blue"/>
                       <span className="font-medium">{item.name}</span>
                     </th>
-                    <th className="mx-4  font-normal text-slate-700">{item.sharing}</th>
-                    <th className="mx-4 font-normal text-slate-700 ">{item.size}</th>
-                    <th className="mx-4 font-normal text-slate-700">{item.modified}</th>
+                    <th className="mx-4 w-[220px] font-normal flex text-slate-700">
+                      <span className="pr-2">{item.sharing}</span>  
+                      {item && item.collaborators?.map((img_i,index)=>{
+                      return <img src={img_i.avatar} key={index}
+                      className="rounded-full -mr-0.5" width={24} height={24} />
+                    })} </th>
+                    <th className="mx-4 w-[120px] text-start font-normal text-slate-700">{item.size}</th>
+                    <th className="mx-4 w-[160px] text-start font-normal text-slate-700">{item.modified}</th>
                     <th className="mx-4 px-2 text-center flex  hover:cursor-pointer"><Ellipsis className="text-slate-600" /></th>
                   </tr>)}
 
